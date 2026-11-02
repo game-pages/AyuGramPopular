@@ -1,0 +1,16 @@
+diff --git a/include/meta/meta_fwd.hpp b/include/meta/meta_fwd.hpp
+index 9b99bac..188180e 100644
+--- a/include/meta/meta_fwd.hpp
++++ b/include/meta/meta_fwd.hpp
+@@ -217,9 +217,9 @@
+ #define META_END_NAMESPACE_CONTAINER
+ #endif
+ 
+-#if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION >= 4000
++#if defined(_LIBCPP_TEMPLATE_VIS)
+ #define META_TEMPLATE_VIS _LIBCPP_TEMPLATE_VIS
+-#elif defined(_LIBCPP_VERSION)
++#elif defined(_LIBCPP_TYPE_VIS_ONLY)
+ #define META_TEMPLATE_VIS _LIBCPP_TYPE_VIS_ONLY
+ #else
+ #define META_TEMPLATE_VIS

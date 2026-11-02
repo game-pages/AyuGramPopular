@@ -251,6 +251,7 @@ public:
 
 	[[nodiscard]] Storage::Cache::Database &cache();
 	[[nodiscard]] Storage::Cache::Database &cacheBigFile();
+	[[nodiscard]] Storage::Cache::Database &channelPopularCache();
 
 	[[nodiscard]] not_null<PeerData*> peer(PeerId id);
 	[[nodiscard]] not_null<PeerData*> peer(UserId id) = delete;
@@ -1121,6 +1122,7 @@ private:
 
 	Storage::DatabasePointer _cache;
 	Storage::DatabasePointer _bigFileCache;
+	std::optional<Storage::DatabasePointer> _channelPopularCache;
 
 	TimeId _exportAvailableAt = 0;
 	base::weak_qptr<Ui::BoxContent> _exportSuggestion;

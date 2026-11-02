@@ -1581,6 +1581,20 @@ Storage::Cache::Database &Session::cacheBigFile() {
 	return *_bigFileCache;
 }
 
+Storage::Cache::Database &Session::channelPopularCache() {
+	if (!_channelPopularCache) {
+		auto settings = Storage::Cache::Database::Settings();
+		settings.clearOnWrongKey = true;
+		settings.totalSizeLimit = 256 * 1024 * 1024;
+		settings.totalTimeLimit = 30 * 24 * 60 * 60;
+		_channelPopularCache.emplace(Core::App().databases().get(
+			_session->local().cachePath() + u"_channel_popular_v1"_q,
+			settings));
+		(*_channelPopularCache)->open(_session->local().cacheKey());
+	}
+	return **_channelPopularCache;
+}
+
 void Session::suggestStartExport(TimeId availableAt) {
 	_exportAvailableAt = availableAt;
 	suggestStartExport();
@@ -5617,6 +5631,8 @@ rpl::producer<RecentJoinChat> Session::recentJoinChat() const {
 }
 
 void Session::clearLocalStorage() {
+	channelPopularCache().close();
+	channelPopularCache().clear();
 	_cache->close();
 	_cache->clear();
 	_bigFileCache->close();

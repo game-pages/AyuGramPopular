@@ -14,6 +14,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <array>
 
 // hard-coded languages
 std::map<QString, QString> langMapping = {
@@ -54,7 +55,50 @@ QString AyuLanguage::getCachePath(const QString &langId) const {
 	return getCacheDir() + langId + u".json"_q;
 }
 
+namespace {
+
+void ApplyPopularLanguage() {
+	const auto &language = Lang::GetInstance();
+	if (!language.id().startsWith(u"zh"_q)
+		&& !language.baseId().startsWith(u"zh"_q)) {
+		return;
+	}
+	const auto values = std::array{
+		std::pair{ "ayu_PopularTitle", "热门消息" },
+		std::pair{ "ayu_PopularLoadingCache", "正在读取缓存…" },
+		std::pair{ "ayu_PopularCached", "缓存时间：{date} · 保留 30 天，刷新可更新反应数" },
+		std::pair{ "ayu_PopularCacheFailed", "缓存保存失败，请保持面板打开以保留当前结果。" },
+		std::pair{ "ayu_PopularMinimum", "最低反应数量（0 表示不限）" },
+		std::pair{ "ayu_PopularRangeThirty", "近 30 天 · 点击切换全部历史" },
+		std::pair{ "ayu_PopularRangeAll", "全部历史 · 点击切换近 30 天" },
+		std::pair{ "ayu_PopularRefresh", "刷新" },
+		std::pair{ "ayu_PopularResume", "继续扫描" },
+		std::pair{ "ayu_PopularCancel", "停止扫描" },
+		std::pair{ "ayu_PopularScanning#one", "扫描中 · 已扫描 {count} 条 · 当前结果尚不完整" },
+		std::pair{ "ayu_PopularScanning#other", "扫描中 · 已扫描 {count} 条 · 当前结果尚不完整" },
+		std::pair{ "ayu_PopularComplete#one", "查询完成 · 已扫描 {count} 条消息" },
+		std::pair{ "ayu_PopularComplete#other", "查询完成 · 已扫描 {count} 条消息" },
+		std::pair{ "ayu_PopularStopped#one", "已停止 · 已扫描 {count} 条 · 当前结果尚不完整" },
+		std::pair{ "ayu_PopularStopped#other", "已停止 · 已扫描 {count} 条 · 当前结果尚不完整" },
+		std::pair{ "ayu_PopularWaiting#one", "请求限流 · {count} 秒后继续" },
+		std::pair{ "ayu_PopularWaiting#other", "请求限流 · {count} 秒后继续" },
+		std::pair{ "ayu_PopularFailed", "暂时无法继续，已有结果已保留。点击“继续扫描”重试。" },
+		std::pair{ "ayu_PopularEmpty", "已扫描的历史中没有符合条件的消息。" },
+		std::pair{ "ayu_PopularMore", "显示更多消息" },
+		std::pair{ "ayu_PopularScore#one", "{count} 次反应 · 不含付费星星" },
+		std::pair{ "ayu_PopularScore#other", "{count} 次反应 · 不含付费星星" },
+		std::pair{ "ayu_PopularMedia", "[媒体消息]" },
+		std::pair{ "ayu_PopularNoText", "[无文字消息]" },
+	};
+	for (const auto &[key, value] : values) {
+		Lang::GetInstance().applyValue(key, value);
+	}
+}
+
+}
+
 void AyuLanguage::loadCachedLanguage() {
+	ApplyPopularLanguage();
 	const auto langPackId = Lang::GetInstance().id();
 	const auto langPackBaseId = Lang::GetInstance().baseId();
 	auto finalLangPackId = langMapping.contains(langPackId) ? langMapping[langPackId] : langPackId;
@@ -210,4 +254,5 @@ void AyuLanguage::applyLanguageJson(QJsonDocument doc) {
 		Lang::GetInstance().applyValue(key.toUtf8(), val.toUtf8());
 	}
 	Lang::GetInstance().updatePluralRules();
+	ApplyPopularLanguage();
 }

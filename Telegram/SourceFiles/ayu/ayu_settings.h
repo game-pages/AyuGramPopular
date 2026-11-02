@@ -337,6 +337,7 @@ public:
 	[[nodiscard]] bool hideAllChatsFolder() const { return _hideAllChatsFolder.current(); }
 	[[nodiscard]] ChannelBottomButton channelBottomButton() const { return _channelBottomButton.current(); }
 	[[nodiscard]] bool quickAdminShortcuts() const { return _quickAdminShortcuts.current(); }
+	[[nodiscard]] int channelPopularMinimum() const { return _channelPopularMinimum; }
 	[[nodiscard]] PeerIdDisplay showPeerId() const { return _showPeerId.current(); }
 	[[nodiscard]] bool showMessageSeconds() const { return _showMessageSeconds.current(); }
 	[[nodiscard]] bool showMessageShot() const { return _showMessageShot.current(); }
@@ -421,6 +422,7 @@ public:
 	void setHideAllChatsFolder(bool val);
 	void setChannelBottomButton(ChannelBottomButton val);
 	void setQuickAdminShortcuts(bool val);
+	void setChannelPopularMinimum(int value);
 	void setShowPeerId(PeerIdDisplay val);
 	void setShowMessageSeconds(bool val);
 	void setShowMessageShot(bool val);
@@ -683,6 +685,7 @@ private:
 	rpl::variable<bool> _hideAllChatsFolder = false;
 	rpl::variable<ChannelBottomButton> _channelBottomButton = ChannelBottomButton::DiscussWithFallback;
 	rpl::variable<bool> _quickAdminShortcuts = true;
+	int _channelPopularMinimum = 0;
 	rpl::variable<PeerIdDisplay> _showPeerId = PeerIdDisplay::BotApi;
 	rpl::variable<bool> _showMessageSeconds = false;
 	rpl::variable<bool> _showMessageShot = true;

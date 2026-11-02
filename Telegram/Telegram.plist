@@ -7,9 +7,9 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Unofficial Telegram Desktop app</string>
 	<key>CFBundleIconFile</key>
-	<string>AppIcon-Default.icns</string>
+	<string>AppIcon-Default</string>
 	<key>CFBundleIconName</key>
-	<string>AppIcon-Default.icns</string>
+	<string>AppIcon-Default</string>
     <key>CFBundleIcons</key>
     <dict>
         <key>CFBundlePrimaryIcon</key>

@@ -8380,3 +8380,30 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "ayu_AboutText1" = "ToS breaking Telegram client based on {api_link}.";
 "ayu_UpdateAyuGram" = "Update AyuGram";
 "ayu_UtilityRestartRequired" = "The app will close in 5 seconds.";
+
+"ayu_PopularTitle" = "Popular Messages";
+"ayu_PopularMinimum" = "Minimum reactions (0 = all)";
+"ayu_PopularRangeThirty" = "Last 30 days · Switch to all history";
+"ayu_PopularRangeAll" = "All history · Switch to last 30 days";
+"ayu_PopularRefresh" = "Refresh";
+"ayu_PopularResume" = "Continue scanning";
+"ayu_PopularCancel" = "Stop scanning";
+"ayu_PopularScanning#one" = "Scanning · {count} message · Results are partial";
+"ayu_PopularScanning#other" = "Scanning · {count} messages · Results are partial";
+"ayu_PopularComplete#one" = "Complete · {count} message scanned";
+"ayu_PopularComplete#other" = "Complete · {count} messages scanned";
+"ayu_PopularStopped#one" = "Stopped · {count} message scanned · Results are partial";
+"ayu_PopularStopped#other" = "Stopped · {count} messages scanned · Results are partial";
+"ayu_PopularWaiting#one" = "Rate limited · Continue in {count} second";
+"ayu_PopularWaiting#other" = "Rate limited · Continue in {count} seconds";
+"ayu_PopularFailed" = "Could not continue. Existing results are kept. Try Continue scanning.";
+"ayu_PopularEmpty" = "No matching messages in the scanned history.";
+"ayu_PopularMore" = "Show more messages";
+"ayu_PopularScore#one" = "{count} reaction · Excludes paid stars";
+"ayu_PopularScore#other" = "{count} reactions · Excludes paid stars";
+"ayu_PopularMedia" = "[Media message]";
+"ayu_PopularNoText" = "[Message without text]";
+
+"ayu_PopularLoadingCache" = "Loading cached results…";
+"ayu_PopularCached" = "Cached: {date} · Kept for 30 days. Refresh to update reaction counts.";
+"ayu_PopularCacheFailed" = "Could not save the cache. Keep this panel open to retain results.";

@@ -73,6 +73,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtGui/QWindow>
 
 // AyuGram includes
+#include "ayu/features/channel_popular/channel_popular.h"
 #include "ayu/ayu_settings.h"
 #include "boxes/peers/edit_participants_box.h"
 #include "data/data_chat_filters.h"
@@ -418,6 +419,15 @@ void TopBarWidget::showPeerMenu() {
 	}
 	const auto addAction = Ui::Menu::CreateAddActionCallback(_menu);
 	Window::FillDialogsEntryMenu(_controller, _activeChat, addAction);
+	if (const auto peer = _activeChat.key.peer()) {
+		if (const auto channel = peer->asChannel()) {
+			if (channel->isBroadcast()) {
+				addAction(tr::ayu_PopularTitle(tr::now), [=] {
+					Ayu::ChannelPopular::Show(_controller, channel);
+				}, &st::menuIconSearch);
+			}
+		}
+	}
 	if (_menu->empty()) {
 		_menu = nullptr;
 	} else {

@@ -13,6 +13,12 @@ using "ui/widgets/widgets.style";
 using "info/info.style";
 using "settings/settings.style";
 
+channelPopularPadding: 16px;
+channelPopularRangeTop: 56px;
+channelPopularInputTop: 88px;
+channelPopularRowHeight: 96px;
+channelPopularTextStep: 24px;
+
 iconPickerSelectedPadding: 2px;
 iconPickerSelectedRounding: 12px;
 iconPickerImagePadding: 4px;
