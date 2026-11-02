@@ -49,6 +49,10 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Verify dependency cleanup handles read-only Git files
+        working-directory: TBuild/tdesktop
+        run: python .github\scripts\test_windows_ci.py
+
       - name: Set up Visual Studio 2022 x64
         uses: ilammy/msvc-dev-cmd@a102174a2b586eec2ea151a69e6fd14404a8ce7c
         with:

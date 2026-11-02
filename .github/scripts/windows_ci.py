@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import struct
 import subprocess
 import sys
@@ -55,7 +56,11 @@ def trim():
         for name in filenames:
             path = folder / name
             if path.suffix.lower() not in keep:
-                path.unlink()
+                try:
+                    path.unlink()
+                except PermissionError:
+                    path.chmod(path.stat().st_mode | stat.S_IWRITE)
+                    path.unlink()
     for directory, _, _ in os.walk(libraries, topdown=False):
         path = Path(directory)
         if not any(path.iterdir()):
