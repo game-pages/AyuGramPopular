@@ -13,7 +13,7 @@ Run the workflow manually from Actions, or push to `popular-windows-x64`. It pre
 
 GitHub caches are scoped to repositories. A workflow running in this fork cannot directly restore the upstream repository's Actions caches. The first run prepares its own dependencies; later runs reuse this fork's caches. The upstream Docker environment builds Linux clients and is not used for Windows.
 
-The workflow runs the existing standalone popular messages index/cache tests with MSVC, builds the Release client with two parallel compilation tasks, validates the executable's AMD64 PE header and bundles its D3D module. Automatic updates and crash reporting are disabled.
+The dependency preparation also includes desktop-app's libvpx NASM 3 compatibility patch from commit `a17d54b63128c83cb53bd71044119e77b3a2da02`. The workflow runs the existing standalone popular messages index/cache tests with MSVC, builds the Release client with two parallel compilation tasks, validates the executable's AMD64 PE header and bundles its D3D module. Automatic updates and crash reporting are disabled.
 
 Successful builds upload one Actions artifact containing:
 

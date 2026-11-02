@@ -36,7 +36,11 @@ def run(command, label):
 
 
 def prepare():
-    run([sys.executable, str(SOURCE / 'Telegram/build/prepare/prepare.py'), 'silent'], 'prepare')
+    script = str(SOURCE / 'Telegram/build/prepare/prepare.py')
+    run([sys.executable, script, 'silent', 'patches'], 'bootstrap-patches')
+    shutil.copyfile(SOURCE / '.github/patches/libvpx-nasm3.patch',
+                    ROOT / 'Libraries/win64/patches/libvpx/0006-fix-build-with-nasm.patch')
+    run([sys.executable, script, 'silent'], 'prepare')
 
 
 def trim():
