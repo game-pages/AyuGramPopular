@@ -9,7 +9,7 @@ Configure these repository Actions secrets before running the workflow:
 
 The initial build uses the upstream public example credentials. Replace them with your own Telegram application credentials for distribution. Secrets are read only during validation and client configuration. Dependency caches do not contain the application build directory or API configuration.
 
-Run the workflow manually from Actions, or push to `popular-windows-x64`. It prepares dependencies using the unmodified upstream `Telegram/build/prepare/prepare.py`, including Release libraries. The cache layout follows Telegram Desktop's Windows workflow at `v6.7.8`: ThirdParty, libraries and Qt are cached separately. Cache keys include dependency script versions, Qt selection, SDK, compiler and Python version. Failed preparation saves a partial cache under a separate key so another run can resume completed stages.
+Run the workflow manually from Actions, or push to `popular-windows-x64`. It prepares dependencies using the upstream `Telegram/build/prepare/prepare.py` with its current MSYS2 UCRT64 tool-package compatibility update, including Release libraries. The cache layout follows Telegram Desktop's Windows workflow at `v6.7.8`: ThirdParty, libraries and Qt are cached separately. Cache keys include dependency script versions, Qt selection, SDK, compiler and Python version. Failed preparation saves a partial cache under a separate key so another run can resume completed stages.
 
 GitHub caches are scoped to repositories. A workflow running in this fork cannot directly restore the upstream repository's Actions caches. The first run prepares its own dependencies; later runs reuse this fork's caches. The upstream Docker environment builds Linux clients and is not used for Windows.
 
