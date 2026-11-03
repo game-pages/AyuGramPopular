@@ -15,6 +15,12 @@
 - **macOS 图标修复**：打包默认与备用图标，修复应用图标配置。
 - **保留增强功能**：本次双平台构建关闭上游自动更新与崩溃报告，避免更新覆盖本分支的优化。
 
+## 功能截图
+
+热门消息面板支持扫描范围切换、反应数量筛选，并显示查询进度、缓存时间和按反应数排序的结果。
+
+![频道热门消息面板：范围切换、反应数量筛选、缓存时间与排序结果](.github/demos/popular-messages.png)
+
 ## 下载与安装
 
 [打开双平台发布页面：v6.7.8-popular2](https://github.com/game-pages/AyuGramPopular/releases/tag/v6.7.8-popular2)
@@ -49,6 +55,10 @@ Windows 和 macOS 的热门消息索引、分页及缓存独立测试均已通�
 [已发布的 Windows 构建记录](https://github.com/game-pages/AyuGramPopular/actions/runs/41412644599)
 
 主要功能源码位于 [Telegram/SourceFiles/ayu/features/channel_popular](Telegram/SourceFiles/ayu/features/channel_popular)，包含界面与扫描逻辑、排序索引、缓存编解码及独立测试。
+
+## 社区认可与致谢
+
+**认可并支持 [LINUX DO 社区](https://linux.do/)**，欢迎访问与交流。
 
 ## 上游 AyuGram 介绍
 
